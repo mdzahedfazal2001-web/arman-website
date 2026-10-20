@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARMAN | Architecture, Construction & Engineering, Mysuru</title>
+  <meta name="description" content="ARMAN designs and builds modern homes and apartments in Mysuru, from first sketch to handover.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bar" id="top">
+  <a href="#top" class="brand" aria-label="ARMAN">
+    <svg viewBox="0 0 100 87" width="26" height="23" aria-hidden="true">
+      <g stroke="#fafafa" stroke-width="3" stroke-linejoin="round">
+        <polygon points="50,0 33.3,28.9 66.7,28.9" fill="#ed1c24"/>
+        <polygon points="33.3,28.9 16.7,57.7 50,57.7" fill="#00a99d"/>
+        <polygon points="33.3,28.9 66.7,28.9 50,57.7" fill="#82d38f"/>
+        <polygon points="66.7,28.9 50,57.7 83.3,57.7" fill="#f7941d"/>
+        <polygon points="16.7,57.7 0,86.6 33.3,86.6" fill="#d4008d"/>
+        <polygon points="16.7,57.7 50,57.7 33.3,86.6" fill="#8b1a8c"/>
+        <polygon points="50,57.7 33.3,86.6 66.7,86.6" fill="#c8e01a"/>
+        <polygon points="50,57.7 83.3,57.7 66.7,86.6" fill="#00aeef"/>
+        <polygon points="83.3,57.7 66.7,86.6 100,86.6" fill="#00a99d"/>
+      </g>
+    </svg>
+    <span>Arman</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#interiors">Interiors</a>
+    <a href="#studio">Studio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <h1><span>We design and build</span> <span>homes in Mysuru.</span></h1>
+  <p class="intro">Architecture, construction and engineering from one team, from the first sketch to the day you get the keys.</p>
+  <div class="trio">
+    <img src="images/ext-6.jpg" alt="Home with a curved roof and jali panel">
+    <img src="images/ext-1.jpg" alt="Duplex with jali screen and wood cladding">
+    <img src="images/ext-2.jpg" alt="Duplex with green accents and glass balcony">
+  </div>
+</section>
+
+<section class="work" id="work">
+  <h2 class="label">Selected work</h2>
+  <div class="index">
+    <ul class="rows">
+      <li><button data-src="images/ext-1.jpg" data-alt="Duplex with jali screen and wood cladding"><span class="t">Jali House</span><span class="k">Residence</span></button></li>
+      <li><button data-src="images/ext-2.jpg" data-alt="Duplex with green accents and glass balcony"><span class="t">Green Duplex</span><span class="k">Residence</span></button></li>
+      <li><button data-src="images/ext-6.jpg" data-alt="Home with a curved roof and jali panel"><span class="t">Curved Roof House</span><span class="k">Residence</span></button></li>
+      <li><button data-src="images/ext-5.jpg" data-alt="Two-storey home with slatted screens and glass balcony"><span class="t">Slatted Screen Home</span><span class="k">Residence</span></button></li>
+      <li><button data-src="images/ext-3.jpg" data-alt="Apartment building with louvered facade"><span class="t">Louvre Apartments</span><span class="k">Apartments</span></button></li>
+      <li><button data-src="images/ext-4.jpg" data-alt="Four-storey apartment building"><span class="t">Four-Storey Apartments</span><span class="k">Apartments</span></button></li>
+    </ul>
+    <div class="preview" aria-hidden="true"><img src="images/ext-1.jpg" alt=""></div>
+  </div>
+</section>
+
+<section class="interiors" id="interiors">
+  <h2 class="label">Interiors</h2>
+  <div class="grid">
+    <img src="images/int-living-1.jpg" alt="Living room with feature wall" loading="lazy">
+    <img src="images/int-kitchen-2.jpg" alt="Modular kitchen with glass partition" loading="lazy">
+    <img src="images/int-bedroom.jpg" alt="Bedroom with cove lighting" loading="lazy">
+    <img src="images/int-dining.jpg" alt="Dining area with pendant light" loading="lazy">
+    <img src="images/int-living-2.jpg" alt="Living room with wall panelling" loading="lazy">
+    <img src="images/int-kitchen-3.jpg" alt="Parallel modular kitchen" loading="lazy">
+  </div>
+</section>
+
+<section class="studio" id="studio">
+  <h2 class="label">Studio</h2>
+  <p class="big">One team plans, engineers and builds your home, so the drawing on paper is the house you move into.</p>
+  <ul class="svc">
+    <li>Architecture and planning</li>
+    <li>House and apartment construction</li>
+    <li>Structural engineering</li>
+    <li>Interior design</li>
+    <li>Renovation</li>
+  </ul>
+</section>
+
+<section class="contact" id="contact">
+  <div class="c-info">
+    <h2>Let's plan your home.</h2>
+    <p>Tell us about your plot. We will call you back, and the first conversation is free.</p>
+    <p class="lines">
+      <a href="tel:+919845167320">98451 67320</a><br>
+      <a href="tel:+919731452132">97314 52132</a><br>
+      <a href="mailto:azeem.mariyam@gmail.com">azeem.mariyam@gmail.com</a>
+    </p>
+    <p class="addr">#420, 7th Cross, 1st Stage,<br>Rajiv Nagar, Mysuru 570019</p>
+  </div>
+  <form id="enquiryForm" novalidate>
+    <label for="name">Full name</label>
+    <input id="name" name="name" type="text" autocomplete="name" required>
+    <label for="phone">Phone number</label>
+    <input id="phone" name="phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel" required>
+    <label for="service">What do you need?</label>
+    <select id="service" name="service" required>
+      <option value="">Select one</option>
+      <option>New house construction</option>
+      <option>Home planning and drawings</option>
+      <option>Apartment or building</option>
+      <option>Interior design</option>
+      <option>Renovation</option>
+    </select>
+    <div class="two">
+      <div><label for="plot">Plot size</label><input id="plot" name="plot" type="text" placeholder="30x40"></div>
+      <div><label for="location">Location</label><input id="location" name="location" type="text"></div>
+    </div>
+    <label for="details">Anything else?</label>
+    <textarea id="details" name="details" rows="2"></textarea>
+    <button type="submit">Send enquiry</button>
+    <p id="formMessage" role="status"></p>
+  </form>
+</section>
+</main>
+
+<footer>
+  <span>&copy; 2026 Arman Architecture, Construction &amp; Engineering</span>
+  <em>The Epitome of Design &amp; Construction</em>
+</footer>
+
+<a href="https://wa.me/919845167320?text=Hi%20ARMAN%2C%20I%20would%20like%20to%20discuss%20a%20project" class="wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
+
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button class="lb lb-prev" aria-label="Previous photo">&#8249;</button>
+  <img alt="">
+  <button class="lb lb-next" aria-label="Next photo">&#8250;</button>
+  <button class="lb lb-close" aria-label="Close">&times;</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
