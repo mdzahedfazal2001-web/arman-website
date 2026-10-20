@@ -1,6 +1,6 @@
 // Supabase: paste your values after creating the project (publishable key only, never the secret key)
-const SUPABASE_URL = "YOUR_PROJECT_URL";
-const SUPABASE_KEY = "YOUR_PUBLISHABLE_KEY";
+const SUPABASE_URL = "https://ejaafwgkwuwrivnzyymu.supabase.co";
+const SUPABASE_KEY = "sb_publishable_q6sYhqO42HYCGlu9jhQqGA_L70LCdRI";
 const db = SUPABASE_URL.startsWith("https://") && typeof supabase !== "undefined"
   ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
@@ -75,3 +75,4 @@ form.addEventListener("submit", async (e) => {
   if (error) { console.error(error); show("Could not send. Call 98451 67320 or use WhatsApp.", BAD); }
   else { show("Enquiry sent. We will call you shortly.", GOOD); form.reset(); }
 });
+

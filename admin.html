@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Enquiries</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Arial,sans-serif;color:#1c1e20;background:#fff;max-width:640px;margin:0 auto;padding:48px 20px;line-height:1.5}
+    h1{font-size:1.4rem;font-weight:600;letter-spacing:.12em;margin-bottom:28px}
+    input{width:100%;padding:10px 0;margin-bottom:18px;border:0;border-bottom:1px solid #aaa;font-size:1rem;outline:0}
+    input:focus{border-color:#1c1e20}
+    button{background:none;border:0;font-size:.9rem;cursor:pointer;color:#1c1e20;text-decoration:underline;padding:0}
+    .main{background:#1c1e20;color:#fff;text-decoration:none;padding:12px 28px;margin-top:6px;font-size:1rem}
+    #app{display:none}
+    .head{display:flex;justify-content:space-between;align-items:baseline}
+    .head h1{margin:0}
+    .item{padding:18px 0;border-bottom:1px solid #e5e5e5}
+    .item.done{opacity:.4}
+    .item b{font-size:1.05rem}
+    .item p{color:#666;font-size:.92rem}
+    .acts{margin-top:8px;display:flex;gap:18px}
+    .acts a{color:#1c1e20;font-size:.9rem}
+    #msg{color:#b3261e;margin-top:14px;font-size:.9rem}
+  </style>
+</head>
+<body>
+
+<div id="login">
+  <h1>ADMIN</h1>
+  <input type="email" id="email" placeholder="Email" autocomplete="username">
+  <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+  <button id="loginBtn" class="main">Log in</button>
+  <p id="msg"></p>
+</div>
+
+<div id="app">
+  <div class="head">
+    <h1>ENQUIRIES</h1>
+    <button id="logoutBtn">Log out</button>
+  </div>
+  <p id="count" style="color:#666;margin:6px 0 8px"></p>
+  <div id="list"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Publishable key only. Never put a secret key here.
+  const SUPABASE_URL = "https://ejaafwgkwuwrivnzyymu.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_q6sYhqO42HYCGlu9jhQqGA_L70LCdRI";
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  const $ = (id) => document.getElementById(id);
+
+  $("loginBtn").onclick = async () => {
+    const { error } = await db.auth.signInWithPassword({ email: $("email").value.trim(), password: $("password").value });
+    if (error) $("msg").textContent = "Wrong email or password.";
+    else start();
+  };
+  $("password").onkeydown = (e) => { if (e.key === "Enter") $("loginBtn").click(); };
+  $("logoutBtn").onclick = async () => { await db.auth.signOut(); location.reload(); };
+
+  function start() {
+    $("login").style.display = "none";
+    $("app").style.display = "block";
+    load();
+  }
+
+  async function load() {
+    const { data, error } = await db.from("enquiries").select("*").order("created_at", { ascending: false });
+    $("list").innerHTML = "";
+    if (error) { $("count").textContent = "Could not load enquiries."; return; }
+    const open = data.filter(e => e.status !== "done").length;
+    $("count").textContent = data.length ? open + " new, " + data.length + " total" : "No enquiries yet.";
+
+    data.forEach((e) => {
+      const done = e.status === "done";
+      const div = document.createElement("div");
+      div.className = "item" + (done ? " done" : "");
+
+      const name = document.createElement("b"); name.textContent = e.name;
+      const l1 = document.createElement("p");
+      l1.textContent = e.phone + "  |  " + new Date(e.created_at).toLocaleDateString("en-IN", { day: "numeric", month: "short" });
+      const l2 = document.createElement("p");
+      l2.textContent = [e.service, e.plot && "Plot " + e.plot, e.location].filter(Boolean).join("  |  ");
+      div.append(name, l1, l2);
+      if (e.details) { const d = document.createElement("p"); d.textContent = e.details; div.appendChild(d); }
+
+      const acts = document.createElement("div"); acts.className = "acts";
+      const call = document.createElement("a"); call.href = "tel:+91" + e.phone; call.textContent = "Call";
+      const toggle = document.createElement("button"); toggle.textContent = done ? "Reopen" : "Done";
+      toggle.onclick = async () => { await db.from("enquiries").update({ status: done ? "new" : "done" }).eq("id", e.id); load(); };
+      acts.append(call, toggle);
+      div.appendChild(acts);
+      $("list").appendChild(div);
+    });
+  }
+
+  db.auth.getSession().then(({ data }) => { if (data.session) start(); });
+</script>
+</body>
+</html>
